@@ -1,14 +1,13 @@
-import { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { getTodosFetch } from './store/actions/todoAction.ts'
+import { useDispatch, useSelector, TypedUseSelectorHook } from 'react-redux'
+import { getTodosFetch } from './store/actions/todosAction.ts'
+import type { RootState } from './store/index.ts'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
   const dispatch = useDispatch()
-  const todos = useSelector(state => state.todoReducer.todos)
+  const todos: TypedUseSelectorHook<RootState> = useSelector(state => state.todos.todos)
 
   return (
     <>
@@ -27,7 +26,7 @@ function App() {
         </button>
         <ul>
           {todos.map(todo => (
-            <li>{todo.title}</li>
+            <li key={todo.id}>{todo.title}</li>
           ))}
         </ul>
         <p>
