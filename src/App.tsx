@@ -26,8 +26,8 @@ function App() {
           Get Todos 
         </button>
         <ul>
-          {todos.map(todo => (
-            <li>{todo.title}</li>
+          {todos.filter((t,i) => i % 10 === 0).map(todo => (
+            <li key={todo.id}>{todo.title}</li>
           ))}
         </ul>
         <p>
