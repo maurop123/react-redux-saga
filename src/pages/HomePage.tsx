@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { changeVideosPage, getVideosFetch, searchVideos } from '../store/actions/videosAction.ts'
+import { changeVideosPage, getVideosFetch, searchVideos, shuffleVideos } from '../store/actions/videosAction.ts'
 //app
 import './HomePage.css'
 import Tile from '../components/TileComponent'
@@ -35,10 +35,11 @@ export default function HomePage() {
     ?
       <>
         <input type="text"
-               className="outline rounded-md mt-12 text-white pl-2 pb-0.5 h-10 text-2xl"
+               className="outline rounded-md mt-12 text-white pl-2 pb-0.5 h-11 text-2xl"
                placeholder="Search video title"
                onChange={handleSearchChanges}
         />
+        <button className="outline ml-3" onClick={() => dispatch(shuffleVideos())}>Shuffle</button>
         <div className="card flex flex-wrap justify-center">
         {
         //Tiles
@@ -46,7 +47,7 @@ export default function HomePage() {
           .slice((videosPage-1)*videosPageSize, videosPage*videosPageSize)
           .map(video => {
             return (
-              <Tile key={video.videoId} videoId={video.videoId} title={video.title} />
+              <Tile key={video.videoId} videoId={video.videoId} title={video.title} artist={video.artist} />
             )
           })
         }

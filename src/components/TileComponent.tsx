@@ -7,8 +7,10 @@ export default function(props) {
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
       ></iframe>
       <a href={`/video/${props.videoId}`}
-         className="text-white underline"
-      >{props.title}</a>
+         className="text-white"
+      >{props.title}<br />
+       {props.artist}
+      </a>
     </div>
   )
 }
