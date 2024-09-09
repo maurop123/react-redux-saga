@@ -1,43 +1,55 @@
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getTodosFetch } from './store/actions/todoAction.ts'
+import { changeVideosPage, getVideosFetch } from './store/actions/videosAction.ts'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import Tile from './components/TileComponent'
 
 function App() {
   const [count, setCount] = useState(0)
   const dispatch = useDispatch()
-  const todos = useSelector(state => state.todoReducer.todos)
+  const videos = useSelector(state => state.videos.videos)
+  const videosPage = useSelector(state => state.videos.page)
+  const videosPageSize = useSelector(state => state.videos.pageSize)
+  const videosPages = Math.ceil(videos.length / videosPageSize)
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => dispatch(getTodosFetch())}>
-          Get Todos 
-        </button>
-        <ul>
-          {todos.filter((t,i) => i % 10 === 0).map(todo => (
-            <li key={todo.id}>{todo.title}</li>
-          ))}
-        </ul>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
+    <div className="h-full flex flex-col justify-between">
+      <h1>Get Hyped Music Videos</h1>
+      <div className="card flex flex-wrap justify-center">
+      { videos.length > 0
+        ?
+          <>
+            {
+              videos
+              .slice((videosPage-1)*videosPageSize, videosPage*videosPageSize)
+              .map(video => {
+                return (
+                  <Tile key={video.videoId} videoId={video.videoId} title={video.title} />
+                )
+              })
+            }
+            <div className="w-full">
+              {
+                Array(videosPages).fill().map((x,i) => {
+                  return (<button key={i} className="m-2 rounded-full" onClick={() => dispatch(changeVideosPage(i+1))}>
+                  {i+1}
+                  </button>)
+                })
+              }
+            </div>
+          </>
+        :
+          <button onClick={() => dispatch(getVideosFetch())}>
+            Get Music Videos 
+          </button>
+      }
       </div>
       <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
+      This is an app for getting hyped with your favorite videos
       </p>
-    </>
+    </div>
   )
 }
 
