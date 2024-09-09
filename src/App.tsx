@@ -1,12 +1,11 @@
+import React from 'react'
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { changeVideosPage, getVideosFetch } from './store/actions/videosAction.ts'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 import Tile from './components/TileComponent'
 
-function App() {
+const HomePage = () => {
   const [count, setCount] = useState(0)
   const dispatch = useDispatch()
   const videos = useSelector(state => state.videos.videos)
@@ -53,4 +52,4 @@ function App() {
   )
 }
 
-export default App
+export default HomePage

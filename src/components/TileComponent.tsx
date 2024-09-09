@@ -6,7 +6,9 @@ export default function(props) {
         className="h-48 w-78"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
       ></iframe>
-      <span>{props.title}</span>
+      <a href={`/video/${props.videoId}`}
+         className="text-white underline"
+      >{props.title}</a>
     </div>
   )
 }
