@@ -1,8 +1,8 @@
-import React from 'react'
-import { Routes, Route, Outlet } from 'react-router-dom'
-import HomePage from './pages/HomePage.tsx'
-import VideoPage from './pages/VideoPage.tsx'
-import AddVideoPage from './pages/AddVideoPage.tsx'
+import React from 'react';
+import { Routes, Route, Outlet } from 'react-router-dom';
+import HomePage from './pages/HomePage.tsx';
+import VideoPage from './pages/VideoPage.tsx';
+import AddVideoPage from './pages/AddVideoPage.tsx';
 
 export default function App() {
   return (
@@ -13,11 +13,9 @@ export default function App() {
         <Route path="/video/add" element={<AddVideoPage />} />
       </Route>
     </Routes>
-  )
+  );
 }
 
 function Layout() {
-  return (
-    <Outlet />
-  )
+  return <Outlet />;
 }
