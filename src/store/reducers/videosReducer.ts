@@ -3,7 +3,7 @@ import { CHANGE_VIDEOS_PAGE, GET_VIDEOS_SUCCESS } from '../actions/videosAction.
 const initialState = {
   videos: [],
   page: 1,
-  pageSize: 6
+  pageSize: 6,
 }
 
 export default (state = {...initialState}, action) => {
