@@ -1,4 +1,4 @@
-import { CHANGE_VIDEOS_PAGE, GET_VIDEOS_SUCCESS, SHUFFLE_VIDEOS } from '../actions/videosAction.ts'
+import { ADD_VIDEO, CHANGE_VIDEOS_PAGE, GET_VIDEOS_SUCCESS, SHUFFLE_VIDEOS } from '../actions/videosAction.ts'
 
 const initialState = {
   videos: [],
@@ -8,6 +8,9 @@ const initialState = {
 
 export default (state = {...initialState}, action) => {
   switch (action.type) {
+    case ADD_VIDEO:
+      console.debug('add', action)
+      return { ...state, videos: [action.action, ...state.videos]}
     case CHANGE_VIDEOS_PAGE:
       return { ...state, page: action.pageNumber }
     case GET_VIDEOS_SUCCESS:

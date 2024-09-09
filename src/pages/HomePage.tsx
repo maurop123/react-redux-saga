@@ -1,4 +1,5 @@
 import React, { useState, useMemo } from 'react'
+import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { changeVideosPage, getVideosFetch, searchVideos, shuffleVideos } from '../store/actions/videosAction.ts'
 //app
@@ -31,12 +32,12 @@ export default function HomePage() {
 
 <div>
 
-  { videos.length > 0
+  { videosUnfiltered.length > 0
     ?
       <>
         <input type="text"
                className="outline rounded-md mt-12 text-white pl-2 pb-0.5 h-11 text-2xl"
-               placeholder="Search video title"
+               placeholder="Filter videos"
                onChange={handleSearchChanges}
         />
         <button className="outline ml-3" onClick={() => dispatch(shuffleVideos())}>Shuffle</button>
@@ -73,6 +74,10 @@ export default function HomePage() {
       <p className="read-the-docs mt-5">
       Get hyped for work with your favorite music videos
       </p>
+
+<Link to="/video/add">
+      <button className="rounded-full text-white bg-blue-600 fixed bottom-3 right-2">+</button>
+      </Link>
     </div>
     )
     }
