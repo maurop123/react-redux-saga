@@ -10,7 +10,10 @@ export default function HomePage() {
   const dispatch = useDispatch()
   const videosUnfiltered = useSelector(state => state.videos.videos)
   const videos = useMemo(() => {
-    return videosUnfiltered.filter(v => v.title.toLowerCase().includes(searchText.toLowerCase()))
+    return videosUnfiltered.filter(v => {
+      const fullText = v.artist + ' ' + v.title
+      return fullText.toLowerCase().includes(searchText.toLowerCase())
+    })
   }, [videosUnfiltered, searchText])
   const videosPage = useSelector(state => state.videos.page)
   const videosPageSize = useSelector(state => state.videos.pageSize)
@@ -66,8 +69,8 @@ export default function HomePage() {
         }
       </div>
 
-      <p className="read-the-docs">
-      This is an app for getting hyped with your favorite videos
+      <p className="read-the-docs mt-5">
+      Get hyped for work with your favorite music videos
       </p>
     </div>
     )
