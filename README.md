@@ -1,5 +1,7 @@
 # React + TypeScript + Vite
 
+For more react-redux-saga action, checkout this new repo for adding tagging for spotify: https://github.com/maurop123/spotify-tagging
+
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 While this project uses React, Vite supports many popular JS frameworks. [See all the supported frameworks](https://vitejs.dev/guide/#scaffolding-your-first-vite-project).
